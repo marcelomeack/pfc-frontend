@@ -28,7 +28,7 @@ export default function New({ history }) {
       headers: { produto_id }
     });
 
-    history.push("/dashboard");
+    history.push("/Produto");
   }
 
   // handleSubmit().then(function enviar(){
