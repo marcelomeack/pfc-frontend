@@ -21,7 +21,8 @@ export default function New({ history, match }) {
       telefone,
       sexo,
       email,
-      dataNascimento
+      dataNascimento,
+      senha
     };
 
     await api.put(`./cliente/${_id}`, data, {});

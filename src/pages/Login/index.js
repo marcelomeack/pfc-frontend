@@ -8,11 +8,11 @@ export default function Login({ history }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const response = await api.post("/login", {
+    const response = await api.post("/sessao", {
       email,
       senha
     });
-    const { tokenAut } = response.data;
+    const tokenAut = response.data;
     localStorage.setItem("clienteToken", tokenAut);
     history.push("./produto");
   }
