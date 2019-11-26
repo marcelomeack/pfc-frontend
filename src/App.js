@@ -1,18 +1,17 @@
-import React from 'react';
-import './App.css';
-import logo from './assets/logo.svg';
-import Routes from './routes';
+import React from "react";
+import "./App.css";
+import logo from "./assets/logo.svg";
+import Routes from "./routes";
 
-
-function App() {   
+function App() {
   return (
     <div className="container">
-      <img src={logo} alt="AirCmC"/>
+      <img src={logo} alt="PNC" />
       <div className="content">
         <Routes />
       </div>
     </div>
-    );
+  );
 }
 
 export default App;

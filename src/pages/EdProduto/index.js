@@ -1,48 +1,29 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import api from "../../services/api";
 import "./styles.css";
-import camera from "../../assets/camera.svg";
 
-export default function New({ history }) {
-  const [thumbnail, setThumbnail] = useState(null);
+export default function New({ history, match }) {
   const [nome, setNome] = useState("");
   const [valor, setValor] = useState("");
   const [descricao, setDescricao] = useState("");
 
-  const preview = useMemo(() => {
-    return thumbnail ? URL.createObjectURL(thumbnail) : null;
-  }, [thumbnail]);
-
   async function handleSubmit(event) {
     event.preventDefault();
 
-    const data = new FormData();
+    let _id = match.params._id;
 
-    data.append("thumbnail", thumbnail);
-    data.append("nome", nome);
-    data.append("descricao", descricao);
-    data.append("valor", valor);
-
-    await api.post("./produto", data, {});
-
-    // console.log(data);
+    const editar = {
+      nome,
+      descricao,
+      valor
+    };
+    await api.put(`./produto/${_id}`, editar, {});
 
     history.push("/Produto");
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <label
-        id="thumbnail"
-        style={{ backgroundImage: `url(${preview})` }}
-        className={thumbnail ? "has-thumbnail" : ""}
-      >
-        <input
-          type="file"
-          onChange={event => setThumbnail(event.target.files[0])}
-        />
-        <img src={camera} alt="Select img" />
-      </label>
       <label htmlFor="nome">Nome do Produto</label>
       <input
         id="nome"
@@ -67,7 +48,7 @@ export default function New({ history }) {
         onChange={event => setValor(event.target.value)}
       />
       <button className="btn" type="submit">
-        Cadastrar Produto
+        Atualizar Produto
       </button>
     </form>
   );
