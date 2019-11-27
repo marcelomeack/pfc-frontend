@@ -66,6 +66,8 @@ function ProdutoItem(produto) {
       <button className="btn" onClick={deletar}>
         Deletar Produto
       </button>
+      <br />
+      <br />
       <Link to={`/EdProduto/${produto._id}`}>
         <button className="btn">Editar Produto</button>
       </Link>

@@ -1,28 +1,33 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
 
-*{
+* {
   padding: 0;
   margin: 0;
   outline: 0;
   box-sizing: border-box;
 }
 
-html, body, #root{
+html,
+body,
+#root {
   min-height: 100%;
 }
 
 body {
-  background: #000 url('./assets/background.jpg') no-repeat;
+  /* background: #000 url("./assets/yodinha.jpg") no-repeat; */
+  background: linear-gradient(to top, black, rgb(223, 223, 223));
   background-size: cover;
   -webkit-font-smoothing: antialiased !important;
 }
 
-body, input, button {
+body,
+input,
+button {
   font-family: Roboto, Arial, Helvetica, sans-serif;
   font-size: 14px;
 }
 
-.container{
+.container {
   margin: 80px auto 0;
   max-width: 450px;
   width: 100%;
@@ -31,18 +36,18 @@ body, input, button {
   align-items: center;
 }
 
-.content{
+.content {
   width: 100%;
   background: #ffffff;
-  margin-top: 50px;
+  margin-top: 30px;
   border-radius: 4px;
   padding: 30px;
 }
 
-.content > p{
-  font-size:  22px;
+.content > p {
+  font-size: 22px;
   line-height: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   text-align: center;
 }
 
@@ -58,14 +63,14 @@ body, input, button {
   margin-bottom: 8px;
 }
 
-.content form label span{
+.content form label span {
   font-size: 14px;
   color: #999;
   font-size: 12px;
 }
 
 .content form input {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   border: 1px solid #c7c7c7;
   border-radius: 2px;
   height: 45px;
@@ -81,13 +86,13 @@ body, input, button {
   padding: 0 22px;
   font-size: 16px;
   font-weight: bold;
-  background: red;
+  background: rgba(231, 0, 0, 0.959);
   color: #ffffff;
 }
 
-button.btn:hover{
+button.btn:hover {
   background: #ff5a5a;
-  transform: scale(1.05);  
+  transform: scale(1.05);
   transition: ease-in-out;
   transition: all 0.5s linear;
 }
