@@ -86,12 +86,12 @@ button {
   padding: 0 22px;
   font-size: 16px;
   font-weight: bold;
-  background: rgba(231, 0, 0, 0.959);
+  background: rgba(44, 44, 44, 0.959);
   color: #ffffff;
 }
 
 button.btn:hover {
-  background: #ff5a5a;
+  background: #616161;
   transform: scale(1.05);
   transition: ease-in-out;
   transition: all 0.5s linear;
