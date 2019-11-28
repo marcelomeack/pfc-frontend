@@ -32,7 +32,7 @@ export default function New({ history }) {
       <label htmlFor="rua"> Rua </label>
       <input
         id="rua"
-        placeholder="Digite a Rua"
+        placeholder="Digite a sua Rua"
         value={rua}
         onChange={event => setRua(event.target.value)}
       />
@@ -46,21 +46,22 @@ export default function New({ history }) {
       <label htmlFor="complemento">Complemento</label>
       <input
         id="complemento"
-        placeholder="Complemento"
+        placeholder="Digite o Complemento"
         value={complemento}
         onChange={event => setComplemento(event.target.value)}
       />
       <label htmlFor="cep">CEP</label>
       <input
         id="cep"
-        placeholder="XXXXX-XXX"
+        type="zip-code"
+        placeholder="Digite o CEP (XXXXX-XXX)"
         value={cep}
         onChange={event => setCep(event.target.value)}
       />
       <label htmlFor="bairro">Bairro</label>
       <input
         id="bairro"
-        placeholder="Bairro"
+        placeholder="Digite o seu Bairro"
         value={bairro}
         onChange={event => setBairro(event.target.value)}
       />

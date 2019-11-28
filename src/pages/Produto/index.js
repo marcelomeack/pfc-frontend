@@ -8,7 +8,7 @@ async function Deletar(id) {
 }
 
 async function mostrarProduto(setProduto) {
-  const tokenAut = localStorage.getItem("clienteToken");
+  const tokenAut = localStorage.getItem("Token");
   const response = await api.get("./produto", {
     headers: { tokenAut }
   });
@@ -44,6 +44,9 @@ export default function Produto() {
       </ul>
       <Link to="/CadProduto">
         <button className="btn">Cadastrar novo Produto</button>
+      </Link>
+      <Link to="/Cliente">
+        <button className="button indigo"> Usuários </button>
       </Link>
     </>
   );

@@ -10,6 +10,7 @@ import EdProduto from "./pages/EdProduto";
 import CadEndereco from "./pages/CadEndereco";
 import CadCliente from "./pages/CadCliente";
 import EdCliente from "./pages/EdCliente";
+import Cliente from "./pages/Cliente";
 
 export default function Routes() {
   return (
@@ -24,6 +25,7 @@ export default function Routes() {
         <Route path="/CadEndereco" exact component={CadEndereco} />
         <Route path="/CadCliente" exact component={CadCliente} />
         <Route path="/EdCliente/:_id" exact component={EdCliente} />
+        <Route path="/Cliente" exact component={Cliente} />
       </Switch>
     </BrowserRouter>
   );

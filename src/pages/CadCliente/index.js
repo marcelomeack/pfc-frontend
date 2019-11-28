@@ -29,7 +29,7 @@ export default function New({ history }) {
       headers: { endereco_id }
     });
 
-    history.push("./Login");
+    history.push("./");
   }
 
   return (

@@ -14,8 +14,7 @@ body,
 }
 
 body {
-  /* background: #000 url("./assets/yodinha.jpg") no-repeat; */
-  background: linear-gradient(to top, black, rgb(223, 223, 223));
+  background: linear-gradient(to top, black, rgb(204, 204, 204));
   background-size: cover;
   -webkit-font-smoothing: antialiased !important;
 }
@@ -27,6 +26,10 @@ button {
   font-size: 14px;
 }
 
+.teste {
+  max-width: 100%;
+  max-width: 100%;
+}
 .container {
   margin: 80px auto 0;
   max-width: 450px;

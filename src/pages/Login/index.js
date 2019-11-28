@@ -13,7 +13,7 @@ export default function Login({ history }) {
       senha
     });
     const tokenAut = response.data;
-    localStorage.setItem("clienteToken", tokenAut);
+    localStorage.setItem("Token", tokenAut);
     history.push("./produto");
   }
 
