@@ -13,7 +13,7 @@ export default function New({ history }) {
     return thumbnail ? URL.createObjectURL(thumbnail) : null;
   }, [thumbnail]);
 
-  async function handleSubmit(event) {
+  async function cadastrarProduto(event) {
     event.preventDefault();
 
     const data = new FormData();
@@ -25,13 +25,11 @@ export default function New({ history }) {
 
     await api.post("./produto", data, {});
 
-    // console.log(data);
-
     history.push("/Produto");
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={cadastrarProduto}>
       <label
         id="thumbnail"
         style={{ backgroundImage: `url(${preview})` }}
@@ -66,7 +64,7 @@ export default function New({ history }) {
         value={valor}
         onChange={event => setValor(event.target.value)}
       />
-      <button className="btn" type="submit">
+      <button className="btn" type="submit" name="btnCadastrarProduto">
         Cadastrar Produto
       </button>
     </form>
