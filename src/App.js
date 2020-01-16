@@ -7,12 +7,10 @@ import "./pages/Cliente/styles.css";
 function App() {
   return (
     <>
-      <div className="teste">
-        <div className="container">
-          <img src={logo} alt="GundamStore" />
-          <div className="content">
-            <Routes />
-          </div>
+      <div className="container">
+        <img src={logo} alt="GundamStore" />
+        <div className="content">
+          <Routes />
         </div>
       </div>
     </>
