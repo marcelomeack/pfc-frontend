@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import api from "../../services/api";
 import { Link } from "react-router-dom";
 import "./styles.css";
+import { Modal } from "react-bootstrap";
 
 async function Deletar(id) {
   await api.delete(`./clienteId/${id}`);
@@ -50,24 +51,38 @@ export default function Cliente() {
 }
 
 function ClienteItem(cliente) {
+  const [modal, setModal] = useState(false);
   const deletar = useCallback(async () => {
     await Deletar(cliente._id);
     cliente.deletadoSucesso(cliente._id);
   }, [cliente]);
 
   return (
-    <li key={cliente._id}>
-      <span text-align="justify">{cliente.nome}</span>
-      <br />
-      <span>{cliente.email}</span>
-      <button className="btn" onClick={deletar}>
-        Deletar Cliente
-      </button>
-      <br />
-      <br />
-      <Link to={`/EdCliente/${cliente._id}`}>
-        <button className="btn">Editar Cliente</button>
-      </Link>
-    </li>
+    <>
+      <li key={cliente._id}>
+        <span text-align="justify">{cliente.nome}</span>
+        <br />
+        <span>{cliente.email}</span>
+        <button className="btn" onClick={() => setModal(true)}>
+          Deletar Cliente
+        </button>
+        <br />
+        <br />
+        <Link to={`/EdCliente/${cliente._id}`}>
+          <button className="btn">Editar Cliente</button>
+        </Link>
+      </li>
+      <Modal size="lg" show={modal} onHide={() => setModal(false)}>
+        <Modal.Body>
+          <p>Tem certeza que deseja deletar o usuário ?</p>
+          <button className="btnm" onClick={deletar}>
+            Sim
+          </button>
+          <button className="btnm" onClick={() => setModal(false)}>
+            Não
+          </button>
+        </Modal.Body>
+      </Modal>
+    </>
   );
 }
