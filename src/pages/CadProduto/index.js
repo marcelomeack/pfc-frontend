@@ -8,6 +8,7 @@ export default function New({ history }) {
   const [nome, setNome] = useState("");
   const [valor, setValor] = useState("");
   const [descricao, setDescricao] = useState("");
+  const [quantidade, setQuantidade] = useState("");
 
   const preview = useMemo(() => {
     return thumbnail ? URL.createObjectURL(thumbnail) : null;
@@ -22,6 +23,7 @@ export default function New({ history }) {
     data.append("nome", nome);
     data.append("descricao", descricao);
     data.append("valor", valor);
+    data.append("quantidade", quantidade);
 
     await api.post("./produto", data, {});
 
@@ -63,6 +65,13 @@ export default function New({ history }) {
         placeholder="Digite o Valor do Produto"
         value={valor}
         onChange={event => setValor(event.target.value)}
+      />
+      <label htmlFor="quantidade">Quantidade do Produto</label>
+      <input
+        id="quantidade"
+        placeholder="Digite a Quantidade do Produto"
+        value={quantidade}
+        onChange={event => setQuantidade(event.target.value)}
       />
       <button className="btn" type="submit" name="btnCadastrarProduto">
         Cadastrar Produto

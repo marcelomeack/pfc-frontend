@@ -6,6 +6,7 @@ export default function New({ history, match }) {
   const [nome, setNome] = useState("");
   const [valor, setValor] = useState("");
   const [descricao, setDescricao] = useState("");
+  const [quantidade, setQuantidade] = useState("");
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -15,7 +16,8 @@ export default function New({ history, match }) {
     const editar = {
       nome,
       descricao,
-      valor
+      valor,
+      quantidade
     };
     await api.put(`./produto/${_id}`, editar, {});
 
@@ -46,6 +48,13 @@ export default function New({ history, match }) {
         placeholder="Digite o Valor do Produto"
         value={valor}
         onChange={event => setValor(event.target.value)}
+      />
+      <label htmlFor="quantidade">Quantidade de Produtos</label>
+      <input
+        id="quantidade"
+        placeholder="Digite a Quantidade do Produto"
+        value={quantidade}
+        onChange={event => setQuantidade(event.target.value)}
       />
       <button className="btn" type="submit">
         Atualizar Produto
