@@ -2,9 +2,12 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3000/produto",
   "dependencies": {
     "axios": "^0.19.0",
+    "blob": "^0.1.0",
     "bootstrap": "^4.4.1",
+    "file-saver": "^2.0.2",
     "prettier": "^1.18.2",
     "react": "^16.10.2",
     "react-bootstrap": "^1.0.0-beta.16",
@@ -12,7 +15,8 @@
     "react-pose": "^4.0.10",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
-    "styled-components": "^4.4.1"
+    "styled-components": "^4.4.1",
+    "uuid": "^7.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
