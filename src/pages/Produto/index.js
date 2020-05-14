@@ -3,6 +3,8 @@ import api from "../../services/api";
 import { Link } from "react-router-dom";
 import "./styles.css";
 import { Modal } from "react-bootstrap";
+import "./styles.css";
+import { saveAs } from "file-saver";
 
 async function Deletar(id) {
   await api.delete(`./produtoId/${id}`);
@@ -13,7 +15,17 @@ async function mostrarProduto(setProduto) {
   const response = await api.get("./produto", {
     headers: { tokenAut }
   });
+  console.log(tokenAut);
   setProduto(response.data);
+}
+
+async function pdf() {
+  await api.post("./pdf");
+  await api.get("./pdf", { responseType: "blob" }).then(res => {
+    const pdfBlob = new Blob([res.data], { type: "application/pdf" });
+
+    saveAs(pdfBlob, "newPdf.pdf");
+  });
 }
 
 export default function Produto() {
@@ -49,6 +61,9 @@ export default function Produto() {
       <Link to="/Cliente">
         <button className="button indigo"> Usuários </button>
       </Link>
+      <button className="button indigo" onClick={pdf}>
+        Gerar Relatório
+      </button>
     </>
   );
 }
@@ -67,6 +82,13 @@ function ProdutoItem(produto) {
         <strong>{produto.nome}</strong>
         <br />
         <span text-align="justify">{produto.descricao}</span>
+        <br />
+        <span
+          text-align="justify"
+          style={produto.quantidade <= 3 ? { color: "red" } : { color: "none" }}
+        >
+          {produto.quantidade}
+        </span>
         <br />
         <span>{produto.valor ? `R$${produto.valor}` : `GRATUITO`}</span>
         <button className="btn" onClick={() => setModal(true)}>
