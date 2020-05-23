@@ -20,12 +20,14 @@ async function mostrarProduto(setProduto) {
 }
 
 async function pdf() {
-  await api.post("./pdf");
-  await api.get("./pdf", { responseType: "blob" }).then(res => {
-    const pdfBlob = new Blob([res.data], { type: "application/pdf" });
+  await api.post("./relatorioFaturamento");
+  await api
+    .get("./getRelatorioFaturamento", { responseType: "blob" })
+    .then(res => {
+      const pdfBlob = new Blob([res.data], { type: "application/pdf" });
 
-    saveAs(pdfBlob, "newPdf.pdf");
-  });
+      saveAs(pdfBlob, "faturamentoPdf.pdf");
+    });
 }
 
 export default function Produto() {
@@ -87,10 +89,10 @@ function ProdutoItem(produto) {
           text-align="justify"
           style={produto.quantidade <= 3 ? { color: "red" } : { color: "none" }}
         >
-          {produto.quantidade}
+          Quantidade: {produto.quantidade}
         </span>
         <br />
-        <span>{produto.valor ? `R$${produto.valor}` : `GRATUITO`}</span>
+        <span>{produto.valor ? `R$: ${produto.valor}` : `GRATUITO`}</span>
         <button className="btn" onClick={() => setModal(true)}>
           Deletar Produto
         </button>

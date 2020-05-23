@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import logo from "./assets/Robo.svg";
+import logo from "./assets/teste.svg";
 import Routes from "./routes";
 import "./pages/Cliente/styles.css";
 
