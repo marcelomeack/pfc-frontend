@@ -79,6 +79,19 @@ button {
   font-size: 16px;
 }
 
+.content button.lojabtn {
+  border: 0;
+  border-radius: 2px;
+  width: 60%;
+  height: 42px;
+  padding: 0 30px;
+  font-size: 16px;
+  font-weight: bold;
+  background: rgba(44, 44, 44, 0.959);
+  color: #ffffff;
+  margin-top: 12px;
+}
+
 .content button.btn {
   border: 0;
   border-radius: 2px;
@@ -98,7 +111,6 @@ button.btn:hover {
   transition: all 0.5s linear;
 }
 .modal {
-  position: fixed !important;
   z-index: 999 !important;
   left: 0;
   top: 0;
@@ -115,12 +127,15 @@ button.btn:hover {
   overflow: auto;
 }
 
+.modal-backdrop {
+  display: none;
+}
+
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 30px;
-  border: 3px solid indigo;
-  width: 60%; /* Could be more or less, depending on screen size */
+  background-color: #fefefe !important;
+  margin: 15% auto !important;
+  border: 3px solid indigo !important;
+  width: 60%;
 }
 
 .modal > p {
@@ -144,6 +159,13 @@ button.btn:hover {
 }
 
 button.btnm:hover {
+  background: #616161;
+  transform: scale(1.05);
+  transition: ease-in-out;
+  transition: all 0.5s linear;
+}
+
+button.lojabtn:hover {
   background: #616161;
   transform: scale(1.05);
   transition: ease-in-out;
