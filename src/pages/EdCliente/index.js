@@ -14,6 +14,7 @@ export default function New({ history, match }) {
     event.preventDefault();
 
     let _id = match.params._id;
+    let endereco = match.params.endereco;
 
     const data = {
       nome,
@@ -25,9 +26,9 @@ export default function New({ history, match }) {
       senha
     };
 
-    await api.put(`./cliente/${_id}`, data, {});
+    await api.put(`./cliente/${_id}/${endereco}`, data, {});
 
-    history.push("./Login");
+    history.push("/Cliente");
   }
 
   return (
@@ -86,7 +87,7 @@ export default function New({ history, match }) {
         onChange={event => setSenha(event.target.value)}
       />
       <button className="btn" type="submit">
-        Cadastrar
+        Atualizar
       </button>
     </form>
   );

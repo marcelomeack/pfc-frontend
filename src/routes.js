@@ -25,7 +25,7 @@ export default function Routes() {
         <Route path="/EdProduto/:_id" exact component={EdProduto} />
         <Route path="/CadEndereco" exact component={CadEndereco} />
         <Route path="/CadCliente" exact component={CadCliente} />
-        <Route path="/EdCliente/:_id" exact component={EdCliente} />
+        <Route path="/EdCliente/:_id/:endereco" exact component={EdCliente} />
         <Route path="/Cliente" exact component={Cliente} />
       </Switch>
     </BrowserRouter>

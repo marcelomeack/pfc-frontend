@@ -64,12 +64,12 @@ function ClienteItem(cliente) {
         <br />
         <span>{cliente.email}</span>
         <button className="btn" onClick={() => setModal(true)}>
-          Deletar Cliente
+          Deletar Usuário
         </button>
         <br />
         <br />
-        <Link to={`/EdCliente/${cliente._id}`}>
-          <button className="btn">Editar Cliente</button>
+        <Link to={`/EdCliente/${cliente._id}/${cliente.endereco}`}>
+          <button className="btn">Editar Usuário</button>
         </Link>
       </li>
       <Modal size="lg" show={modal} onHide={() => setModal(false)}>
