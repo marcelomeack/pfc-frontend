@@ -83,8 +83,19 @@ button {
   border: 0;
   border-radius: 2px;
   width: 60%;
-  height: 42px;
-  padding: 0 30px;
+  height: 60px;
+  font-size: 16px;
+  font-weight: bold;
+  background: rgba(44, 44, 44, 0.959);
+  color: #ffffff;
+  margin-top: 12px;
+}
+
+.content button.iconbtn {
+  border: 0;
+  border-radius: 2px;
+  width: 30px;
+  height: 32px;
   font-size: 16px;
   font-weight: bold;
   background: rgba(44, 44, 44, 0.959);
@@ -166,6 +177,13 @@ button.btnm:hover {
 }
 
 button.lojabtn:hover {
+  background: #616161;
+  transform: scale(1.05);
+  transition: ease-in-out;
+  transition: all 0.5s linear;
+}
+
+button.iconbtn:hover {
   background: #616161;
   transform: scale(1.05);
   transition: ease-in-out;
