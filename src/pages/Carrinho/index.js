@@ -62,18 +62,25 @@ function PayPal() {
   async function cadastrarPedido(valorTotal, carrinho) {
     const dataPedido = Date.now();
     const itemPedidos = carrinho;
-    const cliente_id = "5ecc4414769f9f0a77025d21";
+    const user = JSON.parse(localStorage.getItem("User"));
+    const { _id } = user;
+    const { nome } = user;
+    const { telefone } = user;
+    const { email } = user;
+    const statusPedido = "Aguardando Postagem";
 
     const data = {
       dataPedido,
       valorTotal,
-      itemPedidos
+      itemPedidos,
+      nome,
+      email,
+      telefone,
+      statusPedido
     };
 
-    console.log(data);
-
     await api.post("./pedido", data, {
-      headers: { cliente_id }
+      headers: { _id }
     });
   }
 

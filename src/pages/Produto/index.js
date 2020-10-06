@@ -15,7 +15,6 @@ async function mostrarProduto(setProduto) {
   const response = await api.get("./produto", {
     headers: { tokenAut }
   });
-  console.log(tokenAut);
   setProduto(response.data);
 }
 

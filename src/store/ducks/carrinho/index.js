@@ -1,5 +1,4 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
-import api from "../../../services/api";
 
 const INITIAL_STATE = [];
 
@@ -65,7 +64,7 @@ export default createReducer(INITIAL_STATE, {
   [removerQuantidade.type]: (state, action) => {
     const produto = action.payload;
     const produtoIndex = state.findIndex(p => p._id === produto._id);
-    if (produtoIndex > -1) {
+    if (produtoIndex > -1 && produto.quantidade >= 1) {
       return [
         ...state.slice(0, produtoIndex),
         {

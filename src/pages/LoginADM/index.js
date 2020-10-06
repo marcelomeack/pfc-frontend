@@ -8,20 +8,13 @@ export default function Login({ history }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const response = await api.post("/sessao", {
+    const response = await api.post("/sessaoADM", {
       email,
       senha
     });
-
-    const user = await api.get("/clienteId", {
-      headers: { email }
-    });
-
     const tokenAut = response.data;
-    const usuario = JSON.stringify(user.data);
     localStorage.setItem("Token", tokenAut);
-    localStorage.setItem("User", usuario);
-    history.push("./loja");
+    history.push("./produto");
   }
 
   return (
@@ -47,13 +40,6 @@ export default function Login({ history }) {
           Entrar
         </button>
         <br />
-        <Link to="./CadEndereco">
-          <button className="btn">Cadastrar-se</button>
-        </Link>
-        <br />
-        <Link to="./Adm">
-          <button className="btn">Administrador</button>
-        </Link>
       </form>
     </>
   );

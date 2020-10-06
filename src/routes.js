@@ -13,6 +13,8 @@ import EdCliente from "./pages/EdCliente";
 import Cliente from "./pages/Cliente";
 import Loja from "./pages/Loja";
 import Carrinho from "./pages/Carrinho";
+import Pedidos from "./pages/Pedidos";
+import LoginADM from "./pages/LoginADM";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -23,6 +25,7 @@ export default function Routes() {
       <BrowserRouter>
         <Switch>
           <Route path="/" exact component={Login} />
+          <Route path="/Adm" exact component={LoginADM} />
           <Route path="/Loja" exact component={Loja} />
           <Route path="/CadProduto" exact component={CadProduto} />
           <Route path="/Produto" exact component={Produto} />
@@ -32,6 +35,7 @@ export default function Routes() {
           <Route path="/EdCliente/:_id/:endereco" exact component={EdCliente} />
           <Route path="/Cliente" exact component={Cliente} />
           <Route path="/Carrinho" exact component={Carrinho} />
+          <Route path="/Pedidos" exact component={Pedidos} />
         </Switch>
       </BrowserRouter>
     </Provider>

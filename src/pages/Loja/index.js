@@ -14,7 +14,6 @@ async function mostrarProduto(setProduto) {
 export default function Produto() {
   const [produtos, setProdutos] = useState([]);
   const length = useSelector(state => state.carrinho.length);
-  const carrinho = useSelector(state => state.carrinho);
   localStorage.setItem("produtoQt", JSON.stringify(produtos));
 
   useEffect(() => {
@@ -29,14 +28,7 @@ export default function Produto() {
         })}
       </ul>
       <Link to="/Carrinho">
-        <button
-          className="btn"
-          onClick={() => {
-            console.log(carrinho);
-          }}
-        >
-          Carrinho {length}
-        </button>
+        <button className="btn">Carrinho {length}</button>
       </Link>
     </>
   );

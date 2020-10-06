@@ -14,7 +14,6 @@ async function mostrarCliente(setCliente) {
     headers: { tokenAut }
   });
   setCliente(response.data);
-  console.log(tokenAut);
 }
 
 export default function Cliente() {
