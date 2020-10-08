@@ -15,6 +15,7 @@ import Loja from "./pages/Loja";
 import Carrinho from "./pages/Carrinho";
 import Pedidos from "./pages/Pedidos";
 import LoginADM from "./pages/LoginADM";
+import PedidoCliente from "./pages/PedidoCliente";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -36,6 +37,7 @@ export default function Routes() {
           <Route path="/Cliente" exact component={Cliente} />
           <Route path="/Carrinho" exact component={Carrinho} />
           <Route path="/Pedidos" exact component={Pedidos} />
+          <Route path="/PedidoCliente" exact component={PedidoCliente} />
         </Switch>
       </BrowserRouter>
     </Provider>

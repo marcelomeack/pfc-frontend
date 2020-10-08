@@ -16,6 +16,7 @@ ul.produto-list li header {
   background-position: center;
   border-radius: 4px;
   margin-bottom: 20px;
+  display: block;
 }
 
 ul.produto-list li strong {

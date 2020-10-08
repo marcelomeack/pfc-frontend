@@ -8,14 +8,14 @@ ul.produto-list {
   margin-bottom: 10%;
 }
 
-ul.produto-list li header {
+.teste {
   width: 100%;
-  height: 320px;
+  height: 50px;
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center !important;
   border-radius: 4px;
-  margin-bottom: 20px;
+  border: none;
 }
 
 ul.produto-list li strong {

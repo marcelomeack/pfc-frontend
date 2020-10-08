@@ -83,17 +83,26 @@ function ProdutoItem(pedido, itemPedidos) {
   return (
     <>
       <li>
-        {/* <header
-          style={{
-            backgroundImage: `url(${pedido.itemPedidos.thumbnail_url})`
-          }}
-        /> */}
-        <br />
         {pedido.itemPedidos.map(itemPedido => {
-          return <span>{itemPedido.nome}</span>;
+          return (
+            <>
+              <div
+                className="teste"
+                style={{
+                  backgroundImage: `url(${itemPedido.thumbnail_url})`
+                }}
+              ></div>
+              <span>Produto: {itemPedido.nome}</span>
+              <br />
+              <span>Quantidade: {itemPedido.quantidade}</span>
+              <br />
+              <span>Valor: {itemPedido.valor}</span>
+              <br />
+            </>
+          );
         })}
         <br />
-        <span>Comprador do Pedido:{pedido.nome}</span>
+        <span>Comprador:{pedido.nome}</span>
         <br />
         <span>Email: {pedido.email}</span>
         <br />
