@@ -29,6 +29,15 @@ async function pdf() {
     });
 }
 
+async function pdfProduto() {
+  await api.post("./relatorioRank");
+  await api.get("./getRelatorioRank", { responseType: "blob" }).then(res => {
+    const pdfBlob = new Blob([res.data], { type: "application/pdf" });
+
+    saveAs(pdfBlob, "faturamentoPdf.pdf");
+  });
+}
+
 export default function Produto() {
   const [produtos, setProdutos] = useState([]);
   useEffect(() => {
@@ -59,12 +68,24 @@ export default function Produto() {
       <Link to="/CadProduto">
         <button className="btn">Cadastrar novo Produto</button>
       </Link>
+      <br />
+      <br />
+      <button className="btn" onClick={pdf}>
+        Relatório Faturamento
+      </button>
+      <br />
+      <br />
+      <button className="btn" onClick={pdfProduto}>
+        Produtos Mais vendidos
+      </button>
+      <br />
+      <br />
       <Link to="/Cliente">
         <button className="button indigo"> Usuários </button>
       </Link>
-      <button className="button indigo" onClick={pdf}>
-        Gerar Relatório
-      </button>
+      <Link to="/Pedidos">
+        <button className="button indigo"> Pedidos </button>
+      </Link>
     </>
   );
 }

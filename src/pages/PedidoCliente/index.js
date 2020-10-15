@@ -20,6 +20,9 @@ export default function Pedido() {
 
   return (
     <>
+      <h1 style={{ textAlign: "center" }}>Pedidos</h1>
+      <br />
+      <br />
       <ul className="produto-list">
         {pedidos.map(pedido => {
           return <ProdutoItem key={pedido._id} {...pedido} />;

@@ -14,7 +14,7 @@ import {
 } from "react-icons/bs";
 import api from "../../services/api";
 
-export default function CarrinhoCompras() {
+export default function CarrinhoCompras({ history }) {
   const carrinho = useSelector(state => state.carrinho);
   const total = carrinho.reduce(
     (valorTotal, produto) => valorTotal + produto.valor * produto.quantidade,
@@ -22,6 +22,90 @@ export default function CarrinhoCompras() {
   );
   const valortotal = total.toFixed(2);
   const [checkout, setCheckOut] = useState(false);
+
+  function PayPal() {
+    const paypal = useRef();
+    const carrinho = useSelector(state => state.carrinho);
+    const total = carrinho.reduce(
+      (valorTotal, produto) => valorTotal + produto.valor * produto.quantidade,
+      0
+    );
+    const valortotal = total.toFixed(2);
+
+    async function cadastrarPedido(valorTotal, carrinho) {
+      const dataPedido = Date.now();
+      const itemPedidos = carrinho;
+      const user = JSON.parse(localStorage.getItem("User"));
+      const { _id } = user;
+      const { nome } = user;
+      const { telefone } = user;
+      const { email } = user;
+      const statusPedido = "Aguardando Postagem";
+
+      const data = {
+        dataPedido,
+        valorTotal,
+        itemPedidos,
+        nome,
+        email,
+        telefone,
+        statusPedido
+      };
+
+      await api.post("./pedido", data, {
+        headers: { _id }
+      });
+    }
+
+    async function atualizarEstoque(_id, quantidade) {
+      const data = {
+        _id,
+        quantidade
+      };
+
+      await api.put("./produtoQt", data, {});
+
+      history.push("./PedidoCliente");
+    }
+
+    useEffect(() => {
+      window.paypal
+        .Buttons({
+          createOrder: (data, actions, err) => {
+            return actions.order.create({
+              intent: "CAPTURE",
+              purchase_units: [
+                {
+                  description: "Booo Comics Order",
+                  amount: {
+                    currency_code: "BRL",
+                    value: valortotal
+                  }
+                }
+              ]
+            });
+          },
+          onApprove: async (data, actions) => {
+            const order = await actions.order.capture();
+            await cadastrarPedido(valortotal, carrinho);
+            carrinho.forEach(produto =>
+              atualizarEstoque(produto._id, produto.quantidade)
+            );
+            console.log(order);
+          },
+          onError: err => {
+            console.log(err);
+          }
+        })
+        .render(paypal.current);
+    }, [valortotal, carrinho]);
+
+    return (
+      <div>
+        <div ref={paypal}></div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -47,88 +131,6 @@ export default function CarrinhoCompras() {
         )}
       </div>
     </>
-  );
-}
-
-function PayPal() {
-  const paypal = useRef();
-  const carrinho = useSelector(state => state.carrinho);
-  const total = carrinho.reduce(
-    (valorTotal, produto) => valorTotal + produto.valor * produto.quantidade,
-    0
-  );
-  const valortotal = total.toFixed(2);
-
-  async function cadastrarPedido(valorTotal, carrinho) {
-    const dataPedido = Date.now();
-    const itemPedidos = carrinho;
-    const user = JSON.parse(localStorage.getItem("User"));
-    const { _id } = user;
-    const { nome } = user;
-    const { telefone } = user;
-    const { email } = user;
-    const statusPedido = "Aguardando Postagem";
-
-    const data = {
-      dataPedido,
-      valorTotal,
-      itemPedidos,
-      nome,
-      email,
-      telefone,
-      statusPedido
-    };
-
-    await api.post("./pedido", data, {
-      headers: { _id }
-    });
-  }
-
-  async function atualizarEstoque(_id, quantidade) {
-    const data = {
-      _id,
-      quantidade
-    };
-
-    await api.put("./produtoQt", data, {});
-  }
-
-  useEffect(() => {
-    window.paypal
-      .Buttons({
-        createOrder: (data, actions, err) => {
-          return actions.order.create({
-            intent: "CAPTURE",
-            purchase_units: [
-              {
-                description: "Booo Comics Order",
-                amount: {
-                  currency_code: "BRL",
-                  value: valortotal
-                }
-              }
-            ]
-          });
-        },
-        onApprove: async (data, actions) => {
-          const order = await actions.order.capture();
-          await cadastrarPedido(valortotal, carrinho);
-          carrinho.forEach(produto =>
-            atualizarEstoque(produto._id, produto.quantidade)
-          );
-          console.log(order);
-        },
-        onError: err => {
-          console.log(err);
-        }
-      })
-      .render(paypal.current);
-  }, [valortotal, carrinho]);
-
-  return (
-    <div>
-      <div ref={paypal}></div>
-    </div>
   );
 }
 
