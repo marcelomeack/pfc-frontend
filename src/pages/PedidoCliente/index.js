@@ -93,6 +93,10 @@ function ProdutoItem(pedido) {
         <br />
         <span>Data Pedido: {pedido.dataPedido}</span>
         <br />
+        <span>Endereço de Entrega: {pedido.enderecoEntrega}</span>
+        <br />
+        <span>CEP: {pedido.CEP}</span>
+        <br />
         <span>Status Pedido: {pedido.statusPedido}</span>
         <br />
         <br />

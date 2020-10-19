@@ -22,8 +22,10 @@ export default function CarrinhoCompras({ history }) {
   );
   const valortotal = total.toFixed(2);
   const [checkout, setCheckOut] = useState(false);
+  const [enderecoEntrega, setEnderecoEntrega] = useState("");
+  const [CEP, setCEP] = useState("");
 
-  function PayPal() {
+  function PayPal(event) {
     const paypal = useRef();
     const carrinho = useSelector(state => state.carrinho);
     const total = carrinho.reduce(
@@ -44,7 +46,9 @@ export default function CarrinhoCompras({ history }) {
         valorTotal,
         itemPedidos,
         statusPedido,
-        cliente: _id
+        cliente: _id,
+        enderecoEntrega,
+        CEP
       };
 
       await api.post("./pedido", data, {
@@ -111,6 +115,26 @@ export default function CarrinhoCompras({ history }) {
       </ul>
       <div className="test">
         <strong>Valor Total: R$:{valortotal}</strong>
+        <br />
+        <label htmlFor="enderecoEntrega">
+          Digite o Endereço de Entrega e o CEP
+        </label>
+        <br />
+        <input
+          id="enderecoEntrega"
+          placeholder="Endereço"
+          value={enderecoEntrega}
+          onChange={event => setEnderecoEntrega(event.target.value)}
+        />
+        <br />
+        <br />
+        <input
+          id="CEP"
+          placeholder="XXXXX-XXX"
+          value={CEP}
+          onChange={event => setCEP(event.target.value)}
+        />
+        <br />
         <br />
         {checkout ? (
           <PayPal />
