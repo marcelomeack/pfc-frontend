@@ -102,11 +102,11 @@ function ProdutoItem(pedido, itemPedidos) {
           );
         })}
         <br />
-        <span>Comprador:{pedido.nome}</span>
+        <span>Comprador:{pedido.cliente.nome}</span>
         <br />
-        <span>Email: {pedido.email}</span>
+        <span>Email: {pedido.cliente.email}</span>
         <br />
-        <span>Telefone: {pedido.telefone}</span>
+        <span>Telefone: {pedido.cliente.telefone}</span>
         <br />
         <span>Valor Pedido: R${pedido.valorTotal}</span>
         <br />

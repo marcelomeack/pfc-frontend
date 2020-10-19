@@ -37,19 +37,14 @@ export default function CarrinhoCompras({ history }) {
       const itemPedidos = carrinho;
       const user = JSON.parse(localStorage.getItem("User"));
       const { _id } = user;
-      const { nome } = user;
-      const { telefone } = user;
-      const { email } = user;
       const statusPedido = "Aguardando Postagem";
 
       const data = {
         dataPedido,
         valorTotal,
         itemPedidos,
-        nome,
-        email,
-        telefone,
-        statusPedido
+        statusPedido,
+        cliente: _id
       };
 
       await api.post("./pedido", data, {
