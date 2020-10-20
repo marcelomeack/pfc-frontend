@@ -96,7 +96,7 @@ function ProdutoItem(pedido, itemPedidos) {
               <br />
               <span>Quantidade: {itemPedido.quantidade}</span>
               <br />
-              <span>Valor: {itemPedido.valor}</span>
+              <span>Valor: {itemPedido.valor.toFixed(2)}</span>
               <br />
             </>
           );
@@ -108,7 +108,7 @@ function ProdutoItem(pedido, itemPedidos) {
         <br />
         <span>Telefone: {pedido.cliente.telefone}</span>
         <br />
-        <span>Valor Pedido: R${pedido.valorTotal}</span>
+        <span>Valor Pedido: R${pedido.valorTotal.toFixed(2)}</span>
         <br />
         <span>Data Pedido: {pedido.dataPedido}</span>
         <br />

@@ -83,13 +83,13 @@ function ProdutoItem(pedido) {
               <br />
               <span>Quantidade: {itemPedido.quantidade}</span>
               <br />
-              <span>Valor: {itemPedido.valor}</span>
+              <span>Valor: {itemPedido.valor.toFixed(2)}</span>
               <br />
             </>
           );
         })}
         <br />
-        <span>Valor Pedido: R${pedido.valorTotal}</span>
+        <span>Valor Pedido: R${pedido.valorTotal.toFixed(2)}</span>
         <br />
         <span>Data Pedido: {pedido.dataPedido}</span>
         <br />

@@ -14,7 +14,7 @@ export default createReducer(INITIAL_STATE, {
     const produtos = JSON.parse(localStorage.getItem("produtoQt")).find(
       p => p._id === produto._id
     );
-    if (produtoIndex > -1 && produto.quantidade < produtos.quantidade) {
+    if (produtoIndex > -1) {
       return [
         ...state.slice(0, produtoIndex),
         {

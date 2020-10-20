@@ -13,6 +13,7 @@ import {
   BsFillDashCircleFill
 } from "react-icons/bs";
 import api from "../../services/api";
+import moment from "moment";
 
 export default function CarrinhoCompras({ history }) {
   const carrinho = useSelector(state => state.carrinho);
@@ -24,15 +25,13 @@ export default function CarrinhoCompras({ history }) {
   const [checkout, setCheckOut] = useState(false);
   const [enderecoEntrega, setEnderecoEntrega] = useState("");
   const [CEP, setCEP] = useState("");
+  const user = JSON.parse(localStorage.getItem("User"));
+  const { dataNascimento } = user;
+  const dataAtual = moment().date();
+  const data = moment(dataNascimento, "YYYY-MM-DD").date();
 
   function PayPal(event) {
     const paypal = useRef();
-    const carrinho = useSelector(state => state.carrinho);
-    const total = carrinho.reduce(
-      (valorTotal, produto) => valorTotal + produto.valor * produto.quantidade,
-      0
-    );
-    const valortotal = total.toFixed(2);
 
     async function cadastrarPedido(valorTotal, carrinho) {
       const dataPedido = Date.now();
@@ -67,6 +66,19 @@ export default function CarrinhoCompras({ history }) {
       history.push("./PedidoCliente");
     }
 
+    function valorTotal(valortotal) {
+      const total = carrinho.reduce(
+        (valorTotal, produto) =>
+          valorTotal + produto.valor * produto.quantidade,
+        0
+      );
+      if (moment(data).isSame(dataAtual)) {
+        return (valortotal = (total - total * 0.05).toFixed(2));
+      } else {
+        return (valortotal = total.toFixed(2));
+      }
+    }
+
     useEffect(() => {
       window.paypal
         .Buttons({
@@ -78,7 +90,7 @@ export default function CarrinhoCompras({ history }) {
                   description: "Booo Comics Order",
                   amount: {
                     currency_code: "BRL",
-                    value: valortotal
+                    value: valorTotal()
                   }
                 }
               ]
@@ -86,7 +98,7 @@ export default function CarrinhoCompras({ history }) {
           },
           onApprove: async (data, actions) => {
             const order = await actions.order.capture();
-            await cadastrarPedido(valortotal, carrinho);
+            await cadastrarPedido(valorTotal(), carrinho);
             carrinho.forEach(produto =>
               atualizarEstoque(produto._id, produto.quantidade)
             );
@@ -97,13 +109,29 @@ export default function CarrinhoCompras({ history }) {
           }
         })
         .render(paypal.current);
-    }, [valortotal, carrinho]);
+    });
 
     return (
       <div>
         <div ref={paypal}></div>
       </div>
     );
+  }
+
+  function renderComp() {
+    const valorDesconto = (valortotal - valortotal * 0.05).toFixed(2);
+
+    if (moment(data).isSame(dataAtual)) {
+      return (
+        <>
+          <span> Desconto de Aniversariante 5% </span>
+          <br />
+          <strong> Valor Total com Desconto: R${valorDesconto} </strong>
+        </>
+      );
+    } else {
+      return;
+    }
   }
 
   return (
@@ -115,6 +143,8 @@ export default function CarrinhoCompras({ history }) {
       </ul>
       <div className="test">
         <strong>Valor Total: R$:{valortotal}</strong>
+        <br />
+        {renderComp()}
         <br />
         <label htmlFor="enderecoEntrega">
           Digite o Endereço de Entrega e o CEP
