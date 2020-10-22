@@ -63,6 +63,12 @@ function ClienteItem(cliente) {
         <span text-align="justify">{cliente.nome}</span>
         <br />
         <span>{cliente.email}</span>
+        <br />
+        <span>
+          {cliente.endereco.rua} - {cliente.endereco.numero}
+        </span>
+        <br />
+        <span>{cliente.endereco.cep}</span>
         <button className="btn" onClick={() => setModal(true)}>
           Deletar Usuário
         </button>
