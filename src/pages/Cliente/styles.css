@@ -24,3 +24,8 @@ ul.cliente-list li span {
   font-size: 15px;
   color: #999;
 }
+
+h1.center {
+  display: flex;
+  justify-content: center;
+}

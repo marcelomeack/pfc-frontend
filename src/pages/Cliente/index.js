@@ -8,6 +8,10 @@ async function Deletar(id) {
   await api.delete(`./clienteId/${id}`);
 }
 
+async function DeletarAdministrador(id) {
+  await api.delete(`./AdministradorId/${id}`);
+}
+
 async function mostrarCliente(setCliente) {
   const tokenAut = localStorage.getItem("Token");
   const response = await api.get("./cliente", {
@@ -16,10 +20,21 @@ async function mostrarCliente(setCliente) {
   setCliente(response.data);
 }
 
+async function mostrarAdministrador(setAdministrador) {
+  const tokenAut = localStorage.getItem("Token");
+  const response = await api.get("./Administrador", {
+    headers: { tokenAut }
+  });
+  setAdministrador(response.data);
+}
+
 export default function Cliente() {
   const [clientes, setCliente] = useState([]);
+  const [administradores, setAdministrador] = useState([]);
+
   useEffect(() => {
     mostrarCliente(setCliente);
+    mostrarAdministrador(setAdministrador);
   }, []);
 
   const deletadoSucesso = useCallback(
@@ -30,8 +45,19 @@ export default function Cliente() {
     [clientes]
   );
 
+  const deletadoSucessoAdministrador = useCallback(
+    _id => {
+      const novosAdministradores = administradores.filter(
+        administrador => _id !== administrador._id
+      );
+      setAdministrador(novosAdministradores);
+    },
+    [administradores]
+  );
+
   return (
     <>
+      <h1 className="center">CLIENTES</h1>
       <ul className="cliente-list">
         {clientes.map(cliente => {
           return (
@@ -43,9 +69,72 @@ export default function Cliente() {
           );
         })}
       </ul>
+      <br />
+      <br />
       <Link to="/CadEndereco">
         <button className="btn">Cadastrar novo Usuário</button>
       </Link>
+      <br />
+      <br />
+      <br />
+      <br />
+      <h1 className="center">ADMINISTRADORES</h1>
+      <ul className="cliente-list">
+        {administradores.map(administrador => {
+          return (
+            <AdministradorItem
+              key={administrador._id}
+              {...administrador}
+              deletadoSucessoAdministrador={deletadoSucessoAdministrador}
+            />
+          );
+        })}
+      </ul>
+      <br />
+      <br />
+      <Link to="/CadAdministrador">
+        <button className="btn">Cadastrar novo Administrador</button>
+      </Link>
+    </>
+  );
+}
+
+function AdministradorItem(administrador) {
+  const [modal, setModal] = useState(false);
+  const deletar = useCallback(async () => {
+    await DeletarAdministrador(administrador._id);
+    administrador.deletadoSucessoAdministrador(administrador._id);
+  }, [administrador]);
+
+  return (
+    <>
+      <li key={administrador._id}>
+        <span text-align="justify">{administrador.nome}</span>
+        <br />
+        <span>{administrador.email}</span>
+        <br />
+        <span>{administrador.telefone}</span>
+        <br />
+        <button className="btn" onClick={() => setModal(true)}>
+          Deletar Administrador
+        </button>
+        <br />
+        <br />
+        <Link to={`/EdAdministrador/${administrador._id}`}>
+          <button className="btn">Editar Administrador</button>
+        </Link>
+      </li>
+      <Modal size="lg" show={modal} onHide={() => setModal(false)}>
+        <Modal.Body>
+          <p>Tem certeza que deseja deletar o administrador ?</p>
+          <button className="btnm" onClick={deletar}>
+            Sim
+          </button>
+          <button className="btnm" onClick={() => setModal(false)}>
+            Não
+          </button>
+        </Modal.Body>
+      </Modal>
     </>
   );
 }
