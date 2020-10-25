@@ -8,6 +8,7 @@ import CadProduto from "./pages/CadProduto";
 import Produto from "./pages/Produto";
 import EdProduto from "./pages/EdProduto";
 import EdAdministrador from "./pages/EdAdministrador";
+import EdDados from "./pages/EdDados";
 import CadEndereco from "./pages/CadEndereco";
 import CadCliente from "./pages/CadCliente";
 import CadAdministrador from "./pages/CadAdministrador";
@@ -37,6 +38,8 @@ export default function Routes() {
           <Route path="/CadCliente" exact component={CadCliente} />
           <Route path="/CadAdministrador" exact component={CadAdministrador} />
           <Route path="/EdCliente/:_id/:endereco" exact component={EdCliente} />
+          <Route path="/EdDados/:_id/:endereco" exact component={EdDados} />
+
           <Route
             path="/EdAdministrador/:_id"
             exact

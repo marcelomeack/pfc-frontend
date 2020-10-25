@@ -5,6 +5,7 @@ import { Modal } from "react-bootstrap";
 import { adicionarProduto } from "../../store/ducks/carrinho";
 import { Link } from "react-router-dom";
 import "../Loja/styles.css";
+import { FaShoppingCart } from "react-icons/fa";
 
 async function mostrarProduto(setProduto) {
   const response = await api.get("./produtoLoja", {});
@@ -15,6 +16,9 @@ export default function Produto() {
   const [produtos, setProdutos] = useState([]);
   const length = useSelector(state => state.carrinho.length);
   localStorage.setItem("produtoQt", JSON.stringify(produtos));
+  const user = JSON.parse(localStorage.getItem("User"));
+  const { _id } = user;
+  const { endereco } = user;
 
   useEffect(() => {
     mostrarProduto(setProdutos);
@@ -22,14 +26,27 @@ export default function Produto() {
 
   return (
     <>
+      <Link to="/PedidoCliente">
+        <button className="btncliente">Meus Pedidos</button>
+      </Link>
+      <Link to="/Carrinho">
+        <button className="btncliente">
+          <FaShoppingCart /> - {length}
+        </button>
+      </Link>
+      <Link to={`/EdDados/${_id}/${endereco}`}>
+        <button className="btncliente">Editar Cadastro</button>
+      </Link>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <ul className="produto-list">
         {produtos.map(produto => {
           return <ProdutoItem key={produto._id} {...produto} />;
         })}
       </ul>
-      <Link to="/Carrinho">
-        <button className="btn">Carrinho {length}</button>
-      </Link>
     </>
   );
 }

@@ -169,6 +169,26 @@ button.btn:hover {
   margin: 5px;
 }
 
+button.btncliente {
+  border: 0;
+  border-radius: 2px;
+  width: 25%;
+  height: 42px;
+  padding: 0 22px;
+  font-size: 16px;
+  font-weight: bold;
+  background: rgba(44, 44, 44, 0.959);
+  color: #ffffff;
+  margin-left: 6%;
+}
+
+button.btncliente:hover {
+  background: #616161;
+  transform: scale(1.05);
+  transition: ease-in-out;
+  transition: all 0.5s linear;
+}
+
 button.btnm:hover {
   background: #616161;
   transform: scale(1.05);
