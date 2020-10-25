@@ -18,7 +18,8 @@ import moment from "moment";
 export default function CarrinhoCompras({ history }) {
   const carrinho = useSelector(state => state.carrinho);
   const total = carrinho.reduce(
-    (valorTotal, produto) => valorTotal + produto.valor * produto.quantidade,
+    (valorTotal, produto) =>
+      valorTotal + produto.valor * produto.quantidade + 50.0,
     0
   );
   const valortotal = total.toFixed(2);
@@ -74,6 +75,9 @@ export default function CarrinhoCompras({ history }) {
       );
       if (moment(data).isSame(dataAtual)) {
         return (valortotal = (total - total * 0.05).toFixed(2));
+      }
+      if (total >= 150) {
+        return (valortotal = total - 50.0);
       } else {
         return (valortotal = total.toFixed(2));
       }
@@ -118,15 +122,37 @@ export default function CarrinhoCompras({ history }) {
     );
   }
 
-  function renderComp() {
-    const valorDesconto = (valortotal - valortotal * 0.05).toFixed(2);
+  function Aniversariante() {
+    const valorAniversário = total - 50.0;
+    const valorDesconto = valorAniversário - valorAniversário * 0.05;
 
     if (moment(data).isSame(dataAtual)) {
       return (
         <>
-          <span> Desconto de Aniversariante 5% </span>
+          <span> Aniversariantes recebem 5% de desconto</span>
           <br />
-          <strong> Valor Total com Desconto: R${valorDesconto} </strong>
+          <strong>
+            {" "}
+            Valor Total com Desconto de Aniversariante: R${valorDesconto}{" "}
+          </strong>
+        </>
+      );
+    } else {
+      return;
+    }
+  }
+
+  function Frete() {
+    const valorDescontoFrete = (valortotal - 50.0).toFixed(2);
+
+    if (valortotal >= 150.0) {
+      return (
+        <>
+          <span> Compras Acima de R$:100,00 Recebem Frete Grátis </span>
+          <br />
+          <strong>
+            Valor Total com Desconto de Frete: R${valorDescontoFrete}
+          </strong>
         </>
       );
     } else {
@@ -142,9 +168,15 @@ export default function CarrinhoCompras({ history }) {
         })}
       </ul>
       <div className="test">
+        <span> Valor do Frete: R$50,00</span>
+        <br />
         <strong>Valor Total: R$:{valortotal}</strong>
         <br />
-        {renderComp()}
+        <br />
+        {Frete()}
+        <br />
+        {Aniversariante()}
+        <br />
         <br />
         <label htmlFor="enderecoEntrega">
           Digite o Endereço de Entrega e o CEP
