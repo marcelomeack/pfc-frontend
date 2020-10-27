@@ -20,7 +20,7 @@ export default function Pedido() {
 
   return (
     <>
-      <h1 style={{ textAlign: "center" }}>Pedidos</h1>
+      <h1 style={{ textAlign: "center" }}>Meus Pedidos</h1>
       <br />
       <br />
       <ul className="produto-list">

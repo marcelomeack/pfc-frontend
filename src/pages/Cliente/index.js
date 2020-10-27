@@ -153,6 +153,8 @@ function ClienteItem(cliente) {
         <br />
         <span>{cliente.email}</span>
         <br />
+        <span>{cliente.telefone}</span>
+        <br />
         <span>
           {cliente.endereco.rua} - {cliente.endereco.numero}
         </span>
