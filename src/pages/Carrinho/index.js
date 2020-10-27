@@ -18,11 +18,10 @@ import moment from "moment";
 export default function CarrinhoCompras({ history }) {
   const carrinho = useSelector(state => state.carrinho);
   const total = carrinho.reduce(
-    (valorTotal, produto) =>
-      valorTotal + produto.valor * produto.quantidade + 50.0,
+    (valorTotal, produto) => valorTotal + produto.valor * produto.quantidade,
     0
   );
-  const valortotal = total.toFixed(2);
+  const valortotal = (total + 50.0).toFixed(2);
   const [checkout, setCheckOut] = useState(false);
   const [enderecoEntrega, setEnderecoEntrega] = useState("");
   const [CEP, setCEP] = useState("");
@@ -73,13 +72,15 @@ export default function CarrinhoCompras({ history }) {
           valorTotal + produto.valor * produto.quantidade,
         0
       );
+      valortotal = (total + 50.0).toFixed(2);
+
       if (moment(data).isSame(dataAtual)) {
-        return (valortotal = (total - total * 0.05).toFixed(2));
+        return (valortotal = (valortotal - valortotal * 0.05).toFixed(2));
       }
-      if (total >= 150) {
-        return (valortotal = total - 50.0);
+      if (valortotal >= 150) {
+        return (valortotal = valortotal - 50.0);
       } else {
-        return (valortotal = total.toFixed(2));
+        return valortotal;
       }
     }
 
