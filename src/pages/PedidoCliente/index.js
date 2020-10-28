@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import api from "../../services/api";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 

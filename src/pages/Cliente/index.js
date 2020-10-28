@@ -4,8 +4,11 @@ import { Link } from "react-router-dom";
 import "./styles.css";
 import { Modal } from "react-bootstrap";
 
-async function Deletar(id) {
-  await api.delete(`./clienteId/${id}`);
+async function Deletar(_id) {
+  const data = { _id };
+  await api
+    .put("./pedidoCliente", data, {})
+    .then(await api.delete(`./clienteId/${_id}`));
 }
 
 async function DeletarAdministrador(id) {
