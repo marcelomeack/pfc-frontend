@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import api from "../../services/api";
 import { Dropdown, DropdownButton } from "react-bootstrap";
+import moment from "moment";
 
 async function mostrarPedido(setPedidos) {
   const tokenAut = localStorage.getItem("Token");
@@ -91,7 +92,10 @@ function ProdutoItem(pedido) {
         <br />
         <span>Valor Pedido: R${pedido.valorTotal.toFixed(2)}</span>
         <br />
-        <span>Data Pedido: {pedido.dataPedido}</span>
+        <span>
+          Data e Hora do Pedido:{" "}
+          {moment(pedido.dataPedido).format("DD/MM/YYYY - hh:mm:ss")}
+        </span>
         <br />
         <span>Endereço de Entrega: {pedido.enderecoEntrega}</span>
         <br />
