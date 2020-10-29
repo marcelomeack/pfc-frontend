@@ -112,11 +112,11 @@ function AdministradorItem(administrador) {
   return (
     <>
       <li key={administrador._id}>
-        <span text-align="justify">{administrador.nome}</span>
+        <span text-align="justify">Nome: {administrador.nome}</span>
         <br />
-        <span>{administrador.email}</span>
+        <span>Email: {administrador.email}</span>
         <br />
-        <span>{administrador.telefone}</span>
+        <span>Telefone: {administrador.telefone}</span>
         <br />
         <button className="btn" onClick={() => setModal(true)}>
           Deletar Administrador
@@ -152,17 +152,17 @@ function ClienteItem(cliente) {
   return (
     <>
       <li key={cliente._id}>
-        <span text-align="justify">{cliente.nome}</span>
+        <span text-align="center">Nome: {cliente.nome}</span>
         <br />
-        <span>{cliente.email}</span>
+        <span>Email: {cliente.email}</span>
         <br />
-        <span>{cliente.telefone}</span>
+        <span>Telefone: {cliente.telefone}</span>
         <br />
         <span>
-          {cliente.endereco.rua} - {cliente.endereco.numero}
+          Endereço: {cliente.endereco.rua} - {cliente.endereco.numero}
         </span>
         <br />
-        <span>{cliente.endereco.cep}</span>
+        <span>CEP: {cliente.endereco.cep}</span>
         <button className="btn" onClick={() => setModal(true)}>
           Deletar Usuário
         </button>
