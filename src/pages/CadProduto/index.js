@@ -19,13 +19,17 @@ export default function New({ history }) {
 
     const data = new FormData();
 
+    const tokenAutAdmin = localStorage.getItem("tokenAutAdmin");
+
     data.append("thumbnail", thumbnail);
     data.append("nome", nome);
     data.append("descricao", descricao);
     data.append("valor", valor);
     data.append("quantidade", quantidade);
 
-    await api.post("./produto", data, {});
+    await api.post("./produto", data, {
+      headers: { tokenAutAdmin }
+    });
 
     history.push("/Produto");
   }

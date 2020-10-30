@@ -6,27 +6,33 @@ import { Modal } from "react-bootstrap";
 
 async function Deletar(_id) {
   const data = { _id };
-  await api
-    .put("./pedidoCliente", data, {})
-    .then(await api.delete(`./clienteId/${_id}`));
+  const tokenAutAdmin = localStorage.getItem("tokenAutAdmin");
+  await api.put("./pedidoCliente", data, {}).then(
+    await api.delete(`./clienteId/${_id}`, {
+      headers: { tokenAutAdmin }
+    })
+  );
 }
 
 async function DeletarAdministrador(id) {
-  await api.delete(`./AdministradorId/${id}`);
+  const tokenAutAdmin = localStorage.getItem("tokenAutAdmin");
+  await api.delete(`./AdministradorId/${id}`, {
+    headers: { tokenAutAdmin }
+  });
 }
 
 async function mostrarCliente(setCliente) {
-  const tokenAut = localStorage.getItem("Token");
+  const tokenAutAdmin = localStorage.getItem("tokenAutAdmin");
   const response = await api.get("./cliente", {
-    headers: { tokenAut }
+    headers: { tokenAutAdmin }
   });
   setCliente(response.data);
 }
 
 async function mostrarAdministrador(setAdministrador) {
-  const tokenAut = localStorage.getItem("Token");
+  const tokenAutAdmin = localStorage.getItem("tokenAutAdmin");
   const response = await api.get("./Administrador", {
-    headers: { tokenAut }
+    headers: { tokenAutAdmin }
   });
   setAdministrador(response.data);
 }

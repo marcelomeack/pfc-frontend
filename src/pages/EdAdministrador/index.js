@@ -10,6 +10,8 @@ export default function New({ history, match }) {
   async function handleSubmit(event) {
     event.preventDefault();
 
+    const tokenAutAdmin = localStorage.getItem("tokenAutAdmin");
+
     let _id = match.params._id;
 
     const data = {
@@ -19,7 +21,9 @@ export default function New({ history, match }) {
       senha
     };
 
-    await api.put(`./Administrador/${_id}`, data, {});
+    await api.put(`./Administrador/${_id}`, data, {
+      headers: { tokenAutAdmin }
+    });
 
     history.push("/Cliente");
   }

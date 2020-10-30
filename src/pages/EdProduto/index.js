@@ -11,6 +11,8 @@ export default function New({ history, match }) {
   async function handleSubmit(event) {
     event.preventDefault();
 
+    const tokenAutAdmin = localStorage.getItem("tokenAutAdmin");
+
     let _id = match.params._id;
 
     const editar = {
@@ -19,7 +21,9 @@ export default function New({ history, match }) {
       valor,
       quantidade
     };
-    await api.put(`./produto/${_id}`, editar, {});
+    await api.put(`./produto/${_id}`, editar, {
+      headers: { tokenAutAdmin }
+    });
 
     history.push("/Produto");
   }

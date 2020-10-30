@@ -13,6 +13,8 @@ export default function New({ history }) {
   async function handleSubmit(event) {
     event.preventDefault();
 
+    const tokenAutAdmin = localStorage.getItem("tokenAutAdmin");
+
     const data = {
       nome,
       cpf,
@@ -26,7 +28,7 @@ export default function New({ history }) {
     const endereco_id = localStorage.getItem("endereco");
 
     await api.post("./Administrador", data, {
-      headers: { endereco_id }
+      headers: { endereco_id, tokenAutAdmin }
     });
 
     history.push("./Cliente");

@@ -5,13 +5,17 @@ import { Modal, Dropdown, DropdownButton } from "react-bootstrap";
 import moment from "moment";
 
 async function Deletar(id) {
-  await api.delete(`./pedidoId/${id}`);
+  const tokenAutAdmin = localStorage.getItem("tokenAutAdmin");
+
+  await api.delete(`./pedidoId/${id}`, {
+    headers: { tokenAutAdmin }
+  });
 }
 
 async function mostrarPedido(setPedidos) {
-  const tokenAut = localStorage.getItem("Token");
+  const tokenAutAdmin = localStorage.getItem("tokenAutAdmin");
   const response = await api.get("./pedido", {
-    headers: { tokenAut }
+    headers: { tokenAutAdmin }
   });
   setPedidos(response.data);
 }

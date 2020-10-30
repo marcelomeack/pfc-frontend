@@ -7,13 +7,16 @@ import "./styles.css";
 import { saveAs } from "file-saver";
 
 async function Deletar(id) {
-  await api.delete(`./produtoId/${id}`);
+  const tokenAutAdmin = localStorage.getItem("tokenAutAdmin");
+  await api.delete(`./produtoId/${id}`, {
+    headers: { tokenAutAdmin }
+  });
 }
 
 async function mostrarProduto(setProduto) {
-  const tokenAut = localStorage.getItem("Token");
+  const tokenAutAdmin = localStorage.getItem("tokenAutAdmin");
   const response = await api.get("./produto", {
-    headers: { tokenAut }
+    headers: { tokenAutAdmin }
   });
   setProduto(response.data);
 }
