@@ -7,13 +7,20 @@ export default function Login({ history }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const response = await api.post("/sessaoADM", {
-      email,
-      senha
-    });
-    const tokenAut = response.data;
-    localStorage.setItem("Token", tokenAut);
-    history.push("./produto");
+
+    try {
+      const response = await api.post("/sessaoADM", {
+        email,
+        senha
+      });
+
+      const tokenAutAdmin = response.data;
+      localStorage.setItem("tokenAutAdmin", tokenAutAdmin);
+
+      history.push("./produto");
+    } catch (error) {
+      return alert(error.response.data);
+    }
   }
 
   return (

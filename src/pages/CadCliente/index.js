@@ -23,13 +23,17 @@ export default function New({ history }) {
       senha
     };
 
-    const endereco_id = localStorage.getItem("endereco");
+    try {
+      const endereco_id = localStorage.getItem("endereco");
 
-    await api.post("./cliente", data, {
-      headers: { endereco_id }
-    });
+      await api.post("./cliente", data, {
+        headers: { endereco_id }
+      });
 
-    history.push("./");
+      history.push("./");
+    } catch (error) {
+      return alert(error.response.data);
+    }
   }
 
   return (

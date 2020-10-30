@@ -8,20 +8,27 @@ export default function Login({ history }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const response = await api.post("/sessao", {
-      email,
-      senha
-    });
 
-    const user = await api.get("/clienteId", {
-      headers: { email }
-    });
+    try {
+      const response = await api.post("/sessao", {
+        email,
+        senha
+      });
 
-    const tokenAut = response.data;
-    const usuario = JSON.stringify(user.data);
-    localStorage.setItem("Token", tokenAut);
-    localStorage.setItem("User", usuario);
-    history.push("./loja");
+      const user = await api.get("/clienteId", {
+        headers: { email }
+      });
+
+      const usuario = JSON.stringify(user.data);
+      localStorage.setItem("User", usuario);
+
+      const tokenAut = response.data;
+      localStorage.setItem("Token", tokenAut);
+
+      history.push("./loja");
+    } catch (error) {
+      return alert(error.response.data);
+    }
   }
 
   return (
