@@ -44,11 +44,14 @@ export default createReducer(INITIAL_STATE, {
   [adicionarQuantidade.type]: (state, action) => {
     const produto = action.payload;
     const produtoIndex = state.findIndex(p => p._id === produto._id);
-    const produtos = JSON.parse(localStorage.getItem("produtoQt")).find(
-      p => p._id === produto._id
-    );
+    const produtoDisponivel = JSON.parse(
+      localStorage.getItem("produtoQt")
+    ).find(p => p._id === produto._id);
 
-    if (produtoIndex > -1 && produto.quantidade < produtos.quantidade) {
+    if (
+      produtoIndex > -1 &&
+      produto.quantidade < produtoDisponivel.quantidade
+    ) {
       return [
         ...state.slice(0, produtoIndex),
         {
