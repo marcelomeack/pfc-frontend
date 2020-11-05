@@ -44,6 +44,7 @@ export default function New({ history }) {
         <input
           type="file"
           onChange={event => setThumbnail(event.target.files[0])}
+          required
         />
         <img src={camera} alt="Select img" />
       </label>
@@ -52,6 +53,7 @@ export default function New({ history }) {
         id="nome"
         placeholder="Digite o Nome do Produto"
         value={nome}
+        required
         onChange={event => setNome(event.target.value)}
       />
       <label htmlFor="descricao">Descrição do Produto</label>
@@ -59,6 +61,7 @@ export default function New({ history }) {
         id="descricao"
         placeholder="Digite a Descrição do Produto"
         value={descricao}
+        required
         onChange={event => setDescricao(event.target.value)}
       />
       <label htmlFor="valor">
@@ -75,6 +78,7 @@ export default function New({ history }) {
         id="quantidade"
         placeholder="Digite a Quantidade do Produto"
         value={quantidade}
+        required
         onChange={event => setQuantidade(event.target.value)}
       />
       <button className="btn" type="submit" name="btnCadastrarProduto">

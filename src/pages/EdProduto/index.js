@@ -35,6 +35,7 @@ export default function New({ history, match }) {
         id="nome"
         placeholder="Digite o Nome do Produto"
         value={nome}
+        required
         onChange={event => setNome(event.target.value)}
       />
       <label htmlFor="descricao">Descrição do Produto</label>
@@ -42,6 +43,7 @@ export default function New({ history, match }) {
         id="descricao"
         placeholder="Digite a Descrição do Produto"
         value={descricao}
+        required
         onChange={event => setDescricao(event.target.value)}
       />
       <label htmlFor="valor">
@@ -58,6 +60,7 @@ export default function New({ history, match }) {
         id="quantidade"
         placeholder="Digite a Quantidade do Produto"
         value={quantidade}
+        required
         onChange={event => setQuantidade(event.target.value)}
       />
       <button className="btn" type="submit">

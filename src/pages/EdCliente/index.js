@@ -42,6 +42,7 @@ export default function New({ history, match }) {
         id="nome"
         placeholder="Digite seu Nome"
         value={nome}
+        required
         onChange={event => setNome(event.target.value)}
       />
       <label htmlFor="cpf"> CPF </label>
@@ -50,6 +51,7 @@ export default function New({ history, match }) {
         id="cpf"
         placeholder="Digite o Número do seu CPF"
         value={cpf}
+        required
         onChange={event => setCpf(event.target.value)}
       />
       <label htmlFor="telefone">Telefone</label>
@@ -57,6 +59,7 @@ export default function New({ history, match }) {
         id="telefone"
         placeholder="Digite seu Telefone"
         value={telefone}
+        required
         onChange={event => setTelefone(event.target.value)}
       />
       <label htmlFor="sexo">Sexo</label>
@@ -64,6 +67,7 @@ export default function New({ history, match }) {
         id="sexo"
         placeholder="Sexo"
         value={sexo}
+        required
         onChange={event => setSexo(event.target.value)}
       />
       <label htmlFor="email">Email</label>
@@ -72,6 +76,7 @@ export default function New({ history, match }) {
         id="email"
         placeholder="Digite seu e-mail"
         value={email}
+        required
         onChange={event => setEmail(event.target.value)}
       />
       <label htmlFor="dataNascimento">Data de Nascimento</label>
@@ -80,6 +85,7 @@ export default function New({ history, match }) {
         id="dataNascimento"
         placeholder="Coloque sua Data de Nascimento"
         value={dataNascimento}
+        required
         onChange={event => setDataNascimento(event.target.value)}
       />
       <label htmlFor="senha">Senha</label>
@@ -88,6 +94,7 @@ export default function New({ history, match }) {
         id="senha"
         placeholder="Digite sua Senha"
         value={senha}
+        required
         onChange={event => setSenha(event.target.value)}
       />
       <button className="btn" type="submit">

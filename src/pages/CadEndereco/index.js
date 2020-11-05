@@ -34,6 +34,7 @@ export default function New({ history }) {
         id="rua"
         placeholder="Digite a sua Rua"
         value={rua}
+        required
         onChange={event => setRua(event.target.value)}
       />
       <label htmlFor="numero">Número do Endereço</label>
@@ -41,6 +42,7 @@ export default function New({ history }) {
         id="numero"
         placeholder="Digite o Número do Endereço"
         value={numero}
+        required
         onChange={event => setNumero(event.target.value)}
       />
       <label htmlFor="complemento">Complemento</label>
@@ -48,6 +50,7 @@ export default function New({ history }) {
         id="complemento"
         placeholder="Digite o Complemento"
         value={complemento}
+        required
         onChange={event => setComplemento(event.target.value)}
       />
       <label htmlFor="cep">CEP</label>
@@ -56,6 +59,7 @@ export default function New({ history }) {
         type="zip-code"
         placeholder="Digite o CEP (XXXXX-XXX)"
         value={cep}
+        required
         onChange={event => setCep(event.target.value)}
       />
       <label htmlFor="bairro">Bairro</label>
@@ -63,6 +67,7 @@ export default function New({ history }) {
         id="bairro"
         placeholder="Digite o seu Bairro"
         value={bairro}
+        required
         onChange={event => setBairro(event.target.value)}
       />
       <button className="btn" type="submit">
