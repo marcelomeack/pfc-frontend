@@ -75,7 +75,7 @@ export default function CarrinhoCompras({ history }) {
       valortotal = (total + 50.0).toFixed(2);
 
       if (moment(data).isSame(dataAtual)) {
-        return (valortotal = (valortotal - valortotal * 0.05).toFixed(2));
+        return (valortotal = (valortotal - total * 0.05 - 50.0).toFixed(2));
       }
       if (valortotal >= 150) {
         return (valortotal = valortotal - 50.0);
@@ -124,7 +124,7 @@ export default function CarrinhoCompras({ history }) {
   }
 
   function Aniversariante() {
-    const valorAniversário = total - 50.0;
+    const valorAniversário = valortotal - 50.0;
     const valorDesconto = valorAniversário - valorAniversário * 0.05;
 
     if (moment(data).isSame(dataAtual)) {
