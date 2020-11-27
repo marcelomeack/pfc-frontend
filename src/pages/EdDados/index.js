@@ -18,11 +18,9 @@ export default function New({ history, match }) {
 
     const data = {
       nome,
-      cpf,
       telefone,
       sexo,
       email,
-      dataNascimento,
       senha
     };
 
@@ -40,15 +38,6 @@ export default function New({ history, match }) {
         value={nome}
         required
         onChange={event => setNome(event.target.value)}
-      />
-      <label htmlFor="cpf"> CPF </label>
-      <input
-        type="cpf"
-        id="cpf"
-        placeholder="Digite o Número do seu CPF"
-        value={cpf}
-        required
-        onChange={event => setCpf(event.target.value)}
       />
       <label htmlFor="telefone">Telefone</label>
       <input
@@ -74,15 +63,6 @@ export default function New({ history, match }) {
         value={email}
         required
         onChange={event => setEmail(event.target.value)}
-      />
-      <label htmlFor="dataNascimento">Data de Nascimento</label>
-      <input
-        type="date"
-        id="dataNascimento"
-        placeholder="Coloque sua Data de Nascimento"
-        value={dataNascimento}
-        required
-        onChange={event => setDataNascimento(event.target.value)}
       />
       <label htmlFor="senha">Senha</label>
       <input
